@@ -2,7 +2,7 @@
  * @Author: ytyu
  * @Date: 2022-07-01 21:42:00
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2022-07-07 16:09:06
+ * @LastEditTime: 2022-09-21 14:06:52
  * @Description: 
  */
 pub struct Solution {}
@@ -15,7 +15,7 @@ impl Solution {
     pub fn diff_ways_to_compute_str(express: &str) -> Vec<i32> {
         let mut ret: Vec<i32> = vec![];
         let mut prefix_length = 0;
-        let mut hasSplit = false;
+        let mut has_split = false;
 
         for  c in express.chars() {
             if c == '+' || c == '-' || c == '*' {
@@ -28,13 +28,13 @@ impl Solution {
                     ret.push(num);
                 }
 
-                hasSplit = true;
+                has_split = true;
             }
 
             prefix_length += c.len_utf8();
         }
 
-        if !hasSplit {
+        if !has_split {
             ret.push(express.parse().unwrap())
         }
 
@@ -59,6 +59,11 @@ impl Solution {
     }
 
 
+}
+
+pub(crate) fn demo() {
+    let answer = Solution::diff_ways_to_compute(String::from("2-1-1"));
+    println!("q00241 demo: {:?}", answer);
 }
 
 #[cfg(test)]
