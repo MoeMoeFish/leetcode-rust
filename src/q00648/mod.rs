@@ -2,7 +2,7 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2022-07-07 19:42:38
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2022-09-21 14:00:47
+ * @LastEditTime: 2022-09-27 20:59:06
  * @Description: 
  */
 pub struct Solution;
@@ -65,7 +65,7 @@ mod tests {
     #[test]
     fn test2() {
         let dict = vec![String::from("a"), String::from("b"), String::from("c")];
-        let sentence = String::from("aadsfasf absbs bbab cadsfafs"); ;
+        let sentence = String::from("aadsfasf absbs bbab cadsfafs");
 
         let ret = Solution::replace_words(dict, sentence);
         assert_eq!(ret, "a a b c");
