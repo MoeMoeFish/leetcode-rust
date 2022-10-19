@@ -16,21 +16,17 @@ impl Solution {
             if nums[i] == key {
                 let t = nums[i + 1];
                 let mut count = 1;
-                println!("t: {:?}", t);
                 if number_map.contains_key(&t) {
                     count = number_map.get(&t).unwrap() + 1;
-                    println!("contain t: {:?}, {:?}", t, count);
                 }
                 number_map.insert(t, count);
             }
         }
         
-        println!("why not go");
         let mut max = 0;
         let mut target = 0;
         for v in number_map.keys() {
             let number = number_map.get(v).unwrap().to_owned();
-            println!("for: {:?} - {:?}", v, number);
             if number > max {
                 max = number;
                 target = v.to_owned();
