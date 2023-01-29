@@ -2,7 +2,7 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2022-10-18 13:45:23
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2022-10-21 15:28:31
+ * @LastEditTime: 2022-10-21 19:35:15
  * @Description: 
  */
 pub struct Solution;
@@ -18,13 +18,13 @@ impl Solution {
                 if deep <= 0 as usize {
                     count += 1;
                 } else {
-                    count += Solution::digit_set(digits, digits_len, n_arr,  deep - 1);
+                    count += digits_len.pow(deep as u32);
                 }
             } else if u == current_n {
                 if deep <= 0 as usize {
                     count += 1
                 } else {
-                    count += digits_len.pow(deep as u32);
+                    count += Solution::digit_set(digits, digits_len, n_arr,  deep - 1);
                 }
             }
         }
@@ -44,7 +44,8 @@ impl Solution {
             num = num / 10;
             n_arr.push(rem)
         }
-        n_arr.reverse();
+        // n_arr.reverse();
+
 
         let num_digits = digits.into_iter().map(|x| x.parse::<i32>().unwrap()).collect::<Vec<_>>();
         let len_n = n_arr.len();
@@ -58,7 +59,6 @@ impl Solution {
 
 
         let count = Solution::digit_set(&num_digits, num_digits.len() as i32, &n_arr, len_n - 1);
-        println!("zero_count: {:?}, count: {:?}", zero_count, count);
         return zero_count as i32 + count;
     }
 }
