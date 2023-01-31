@@ -2,11 +2,12 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2023-01-10 11:04:19
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-01-30 13:37:33
+ * @LastEditTime: 2023-01-31 14:03:45
  * @Description: 
  */
 
 mod solution1;
+mod solution2;
 
 pub(crate) fn demo() {
     let nums1 = vec![1,3];
@@ -20,7 +21,10 @@ mod tests {
 
     fn inner_test(nums1: &Vec<i32>, nums2: &Vec<i32>, answer: f64) {
         let ret = solution1::Solution::find_median_sorted_arrays(nums1.clone(), nums2.clone());
-        assert_eq!(ret, answer)
+        assert_eq!(ret, answer);
+
+        let ret2 = solution1::Solution::find_median_sorted_arrays(nums1.clone(), nums2.clone());
+        assert_eq!(ret2, answer);
     }
 
     #[test]
