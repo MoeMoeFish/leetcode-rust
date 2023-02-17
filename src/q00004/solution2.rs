@@ -2,7 +2,7 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2023-01-31 13:49:42
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-02-01 20:11:16
+ * @LastEditTime: 2023-02-15 13:30:14
  * @Description: 在两个数组中分别定义两个点，根据中位数的定义有 i + j = (m - i) + (n - j)
  */
 
@@ -31,6 +31,7 @@ impl Solution {
         loop {
             let i = (left + right) / 2;
             let j = (len + 1) / 2 - i;
+            
 
             if i > 0 && j < n && nums1[i - 1] > nums2[j] {
                 right = i - 1;
