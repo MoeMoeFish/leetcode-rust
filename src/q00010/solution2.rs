@@ -2,7 +2,7 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2023-02-09 12:47:15
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-02-17 13:37:10
+ * @LastEditTime: 2023-02-17 13:43:39
  * @Description: 使用标准的 dp 方法，
  * 针对当前字符是否为 * 做特殊判断
  */
@@ -20,7 +20,6 @@ impl Solution {
         let mut ret: bool;
         for i in 0..m+1 {
             for j in 0..n+1 {
-                println!("compare: {}, {}", i, j); // todo!
                 if i == 0 && j == 0 {
                     buffer[i][j] = true;
                     continue;
@@ -60,7 +59,6 @@ impl Solution {
             }
         }
 
-        println!("result: {:?}", buffer); // todo!
         return buffer[m][n];
         
     }
