@@ -2,11 +2,12 @@
  * @Author: ytyu
  * @Date: 2022-06-30 13:30:30
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-02-01 20:17:51
+ * @LastEditTime: 2023-02-17 13:57:43
  * @Description: 
  */
 mod q00004;
 mod q00010;
+mod q00023;
 mod q00241;
 mod q00417;
 mod q00648;
@@ -25,6 +26,7 @@ fn main() {
 fn run_demo() {
     q00004::demo();
     q00010::demo();
+    q00023::demo();
     q00241::demo();
     q00417::demo();
     q00648::demo();
