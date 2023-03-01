@@ -4,8 +4,8 @@ pub(crate) struct ListNode {
 }
 
 impl ListNode {
-    fn new(val: i32) -> ListNode {
-        ListNode {
+    pub fn new(val: i32) -> Self {
+        Self {
             val,
             next: None
         }
