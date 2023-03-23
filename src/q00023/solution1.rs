@@ -2,7 +2,7 @@
  * @Author: moemoefish moemoefish@qq.com
  * @Date: 2023-02-27 14:04:14
  * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-03-03 14:04:39
+ * @LastEditTime: 2023-03-08 13:21:54
  * @Description: 类似归并排序的方法，先排序最下一层，在一层一层向上逐渐排序
  */
 
@@ -56,6 +56,13 @@ impl Solution {
 
             left = Solution::merge_k_lists_recur(left_list);
             right = Solution::merge_k_lists_recur(right_list);
+        }
+
+        let mut head = ListNode::new(0);
+
+        while left != None || right != None {
+            head.next = right;
+            right.unwrap().next = None;
         }
 
         todo!()
