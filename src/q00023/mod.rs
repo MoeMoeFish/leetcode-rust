@@ -1,14 +1,15 @@
 /*
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2023-02-17 13:56:36
- * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-03-03 13:10:16
+ * @LastEditors: moemoefish moemoefish@qq.com
+ * @LastEditTime: 2023-03-23 19:12:22
  * @Description: q00023
  */
 
 mod list_node;
 mod solution1;
 use list_node::ListNode;
+
 
 fn convert_vec_to_linked_list(val: Vec<i32>) -> Option<Box<ListNode>>  {
     let mut head = None;
