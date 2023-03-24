@@ -2,7 +2,7 @@
  * @Author: MoeMoeFish moemoefish@qq.com
  * @Date: 2023-02-17 13:56:36
  * @LastEditors: moemoefish moemoefish@qq.com
- * @LastEditTime: 2023-03-23 19:12:22
+ * @LastEditTime: 2023-03-24 20:26:44
  * @Description: q00023
  */
 
@@ -38,8 +38,13 @@ pub(crate) fn demo() {
     let input = vec![vec![1,4,5],vec![1,3,4],vec![2,6]];
     let lists: Vec<Option<Box<ListNode>>> = convert_vec_to_linked_list_list(input.clone());
 
-    solution1::Solution::merge_k_lists(lists);
-    println!("q00023");
+    let ret = solution1::Solution::merge_k_lists(lists);
+    println!("q00023 {:?}", ret);
+}
+
+#[cfg(test)]
+mod test {
+    use super::solution1;
 }
 
 

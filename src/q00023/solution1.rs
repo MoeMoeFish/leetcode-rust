@@ -2,14 +2,12 @@
  * @Author: moemoefish moemoefish@qq.com
  * @Date: 2023-02-27 14:04:14
  * @LastEditors: moemoefish moemoefish@qq.com
- * @LastEditTime: 2023-03-23 19:12:06
+ * @LastEditTime: 2023-03-24 20:20:24
  * @Description: 类似归并排序的方法，先排序最下一层，在一层一层向上逐渐排序
  */
 
 
 use super::list_node::ListNode;
-
-use std::collections::BinaryHeap;
 use std::cmp::{Ord, Ordering, PartialEq};
 
 impl Ord for ListNode {
@@ -27,10 +25,8 @@ impl PartialOrd for ListNode {
 
 impl Solution {
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
-        let l = lists.len();
-        let mut node_lists = lists.to_vec();
+        let node_lists = lists.to_vec();
         Solution::merge_k_lists_recur(node_lists)
-        
     }
 
     fn merge_k_lists_recur(mut lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
@@ -44,9 +40,8 @@ impl Solution {
             return lists.pop().unwrap();
         }
 
-        let mut left = None;
-        let mut right = None;
-
+        let mut left: Option<Box<ListNode>>;
+        let mut right: Option<Box<ListNode>>;
 
         if len == 2 {
             left = lists.pop().unwrap();
@@ -72,15 +67,38 @@ impl Solution {
             right = Solution::merge_k_lists_recur(right_list);
         }
 
-        let mut head = ListNode::new(0);
+        let mut head: Option<Box<ListNode>> = None;
+        let mut curr = &mut head;
 
         while left != None || right != None {
-            head.next = right;
-            right.unwrap().next = None;
+            if left < right {
+                let left_next = match left.as_mut() {
+                    Some(b) => b.pop_next(),
+                    None => None,
+                };
+
+                if let Some(ln) = curr {
+                    ln.next = left;
+                    curr = &mut ln.next;
+                }
+
+                left = left_next;
+            } else {
+                let right_next = match right.as_mut() {
+                    Some(b) => b.pop_next(),
+                    None => None,
+                };
+
+                if let Some(ln) = curr {
+                    ln.next = right;
+                    curr = &mut ln.next;
+                }
+
+                right = right_next;
+            }
         }
 
-        todo!()
-        
+        head
     }
 }
 
