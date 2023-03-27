@@ -1,11 +1,10 @@
 /*
  * @Author: moemoefish moemoefish@qq.com
  * @Date: 2023-02-27 14:04:14
- * @LastEditors: moemoefish moemoefish@qq.com
- * @LastEditTime: 2023-03-24 20:20:24
+ * @LastEditors: MoeMoeFish moemoefish@qq.com
+ * @LastEditTime: 2023-03-25 01:19:50
  * @Description: 类似归并排序的方法，先排序最下一层，在一层一层向上逐渐排序
  */
-
 
 use super::list_node::ListNode;
 use std::cmp::{Ord, Ordering, PartialEq};
@@ -13,7 +12,8 @@ use std::cmp::{Ord, Ordering, PartialEq};
 impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {
         // 默认是最大堆，这里颠倒顺序，实现最小堆。
-        other.val.cmp(&self.val)
+        // other.val.cmp(&self.val)
+        self.val.cmp(&other.val)
     }
 }
 
@@ -31,6 +31,8 @@ impl Solution {
 
     fn merge_k_lists_recur(mut lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         let len = lists.len();
+
+        println!("merge_k_lists_recur: {:?}", len);
 
         if len == 0 {
             return None;
@@ -67,10 +69,11 @@ impl Solution {
             right = Solution::merge_k_lists_recur(right_list);
         }
 
-        let mut head: Option<Box<ListNode>> = None;
+        let mut head: Option<Box<ListNode>> = Some(Box::new(ListNode::new(0)));
         let mut curr = &mut head;
 
-        while left != None || right != None {
+        while left != None && right != None {
+            println!("left: {:?}, right: {:?}, left < right: {:?}", left, right, left < right);
             if left < right {
                 let left_next = match left.as_mut() {
                     Some(b) => b.pop_next(),
@@ -81,7 +84,6 @@ impl Solution {
                     ln.next = left;
                     curr = &mut ln.next;
                 }
-
                 left = left_next;
             } else {
                 let right_next = match right.as_mut() {
@@ -92,13 +94,25 @@ impl Solution {
                 if let Some(ln) = curr {
                     ln.next = right;
                     curr = &mut ln.next;
-                }
+        }
 
                 right = right_next;
             }
         }
 
-        head
+        if left != None {
+            if let Some(ln) = curr {
+                ln.next = left;
+            }
+        }
+
+        if right != None {
+            if let Some(ln) = curr {
+                ln.next = right;
+            }
+        }
+        
+        head.unwrap().next
     }
 }
 
