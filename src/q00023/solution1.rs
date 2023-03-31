@@ -1,27 +1,30 @@
 /*
  * @Author: moemoefish moemoefish@qq.com
  * @Date: 2023-02-27 14:04:14
- * @LastEditors: MoeMoeFish moemoefish@qq.com
- * @LastEditTime: 2023-03-25 01:19:50
+ * @LastEditors: moemoefish moemoefish@qq.com
+ * @LastEditTime: 2023-03-31 19:32:28
  * @Description: 类似归并排序的方法，先排序最下一层，在一层一层向上逐渐排序
+ * node 总数为 n，时间复杂度为 O(n)，通过修改 Node.next 的指向进行排序操作，空间复杂度为 O(1)
  */
 
 use super::list_node::ListNode;
+
+use core::mem;
 use std::cmp::{Ord, Ordering, PartialEq};
 
-impl Ord for ListNode {
-    fn cmp(&self, other: &Self) -> Ordering {
-        // 默认是最大堆，这里颠倒顺序，实现最小堆。
-        // other.val.cmp(&self.val)
-        self.val.cmp(&other.val)
-    }
-}
+// impl Ord for ListNode {
+//     fn cmp(&self, other: &Self) -> Ordering {
+//         // 默认是最大堆，这里颠倒顺序，实现最小堆。
+//         // other.val.cmp(&self.val)
+//         self.val.cmp(&other.val)
+//     }
+// }
 
-impl PartialOrd for ListNode {
-    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        Some(self.cmp(other))
-    }
-}
+// impl PartialOrd for ListNode {
+//     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+//         Some(self.cmp(other))
+//     }
+// }
 
 impl Solution {
     pub fn merge_k_lists(lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
@@ -29,10 +32,15 @@ impl Solution {
         Solution::merge_k_lists_recur(node_lists)
     }
 
+    pub fn pop_next(node: &mut ListNode) -> Option<Box<ListNode>> {
+        let mut ret: Option<Box<ListNode>> = None;
+        mem::swap(&mut node.next, &mut ret);
+
+        return ret;
+    }
+
     fn merge_k_lists_recur(mut lists: Vec<Option<Box<ListNode>>>) -> Option<Box<ListNode>> {
         let len = lists.len();
-
-        println!("merge_k_lists_recur: {:?}", len);
 
         if len == 0 {
             return None;
@@ -73,10 +81,9 @@ impl Solution {
         let mut curr = &mut head;
 
         while left != None && right != None {
-            println!("left: {:?}, right: {:?}, left < right: {:?}", left, right, left < right);
             if left < right {
                 let left_next = match left.as_mut() {
-                    Some(b) => b.pop_next(),
+                    Some(b) => Self::pop_next(b),
                     None => None,
                 };
 
@@ -87,7 +94,7 @@ impl Solution {
                 left = left_next;
             } else {
                 let right_next = match right.as_mut() {
-                    Some(b) => b.pop_next(),
+                    Some(b) => Self::pop_next(b),
                     None => None,
                 };
 
