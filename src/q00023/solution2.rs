@@ -7,7 +7,7 @@
  */
 
 use super::list_node::ListNode;
-use std::cmp::{Ord, Ordering, PartialEq};
+use std::cmp::{Ord, Ordering};
 
 impl Ord for ListNode {
     fn cmp(&self, other: &Self) -> Ordering {
@@ -35,7 +35,7 @@ impl Heap {
     fn heapify(&mut self, i: usize) {
         let len = self.buf.len();
 
-        let mut parent = i;
+        let parent = i;
         let mut son = parent * 2 + 1;
 
         if son >= len {
@@ -89,7 +89,7 @@ impl Solution {
             }
 
             let mut head = lists.pop().unwrap();
-            let mut next: Option<Box<ListNode>> = None;
+            let mut next: Option<Box<ListNode>>;
 
             loop {
                 if head == None {

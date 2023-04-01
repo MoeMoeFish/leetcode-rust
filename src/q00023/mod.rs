@@ -55,8 +55,8 @@ fn convert_list_node_to_vec(node: Option<Box<ListNode>>) -> Vec<i32> {
 pub(crate) fn demo() {
     let input = vec![vec![1,4,5],vec![1,3,4],vec![2,6]];
 
-    let ret1 = solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone()));
-    let ret2 = solution2::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone()));
+    let ret1 = convert_list_node_to_vec(solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
+    let ret2 = convert_list_node_to_vec(solution2::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
     println!("q00023 {:?}", ret1);
     println!("q00023 {:?}", ret2);
 }
@@ -66,8 +66,8 @@ mod test {
     use super::{solution1, solution2, convert_list_node_to_vec, convert_vec_to_linked_list_list};
 
     fn inner_test(input: Vec<Vec<i32>>, ans: Vec<i32>) {
-        // let ret1 = convert_list_node_to_vec(solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
-        // assert_eq!(ans, ret1);
+        let ret1 = convert_list_node_to_vec(solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
+        assert_eq!(ans, ret1);
 
         let ret2 = convert_list_node_to_vec(solution2::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
         assert_eq!(ans, ret2);
