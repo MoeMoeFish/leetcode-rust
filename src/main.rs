@@ -1,8 +1,8 @@
 /*
  * @Author: ytyu
  * @Date: 2022-06-30 13:30:30
- * @LastEditors: moemoefish moemoefish@qq.com
- * @LastEditTime: 2023-04-03 17:11:18
+ * @LastEditors: MoeMoeFish moemoefish@qq.com
+ * @LastEditTime: 2023-04-06 11:03:55
  * @Description: 
  */
 use std::env;
@@ -48,7 +48,7 @@ fn run_demo() {
     q02190::demo();
 }
 
-// 为了在完成某个题目时，不用编译其他题目
+// 为了在完成某个题目时，不用执行其他的
 fn run_this() {
     q00025::demo();
 }
