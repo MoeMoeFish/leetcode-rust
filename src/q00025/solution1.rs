@@ -2,7 +2,7 @@
  * @Author: moemoefish moemoefish@qq.com
  * @Date: 2023-04-03 19:51:20
  * @LastEditors: moemoefish moemoefish@qq.com
- * @LastEditTime: 2023-04-06 20:19:56
+ * @LastEditTime: 2023-04-07 14:30:14
  * @Description: q00025 solution1
  */
 
@@ -14,61 +14,52 @@ impl Solution {
             return head;
         }
 
-        Solution::reverse_inner(head, k)
+        Self::reverse_inner(head, k)
     }
 
     fn reverse_inner(mut head: Option<Box<ListNode>>, k: i32) -> Option<Box<ListNode>> {
+        let next_start: Option<Box<ListNode>>;
 
-        let mut ret_head = Some(Box::new(ListNode::new(0)));
-        let mut last = &mut ret_head;
+        let mut i = k;
 
-        // let mut head_mut = &mut head;
-        let mut group_curr = &mut head;
-        let mut next_group = &head;
-
-
-        loop {
-            let mut i = k;
-            let mut need_reverse = true;
-            let mut group_head = Some(Box::new(ListNode::new(0)));
-
+        {
+            let mut group_curr = &mut head;
             while i >= 0 {
-                if let Some(n) = next_group {
-                    next_group = &n.next;
+                if let Some(n) = group_curr {
+                    group_curr = &mut n.next;
                     i -= 1;
                 } else {
-                    need_reverse = false;
+                    return head;
                 }
             }
 
-            if need_reverse {
-                let mut iter = group_curr;
-
-                loop {
-                    if iter == next_group {
-                        break;
-                    }
-
-                    if let Some(n) = iter.as_mut() {
-                        let mut b = n.next.take();
-                        if let Some(h) = group_head {
-                            if h.next.is_some() {
-                                // let t = h.next.take();
-                                // h.next = Some(Box::new(ListNode::new(0)));
-                            }
-                        }
-                    }
-
-                }
-                todo!();
-                break;
-            } else {
-                todo!();
-            }
-            
+            next_start = group_curr.take();
         }
 
-        ret_head.unwrap().next
+        let mut group_last = &mut head;
+        let mut next_item: Option<Box<ListNode>>;
+
+        let mut ret_head = &mut Some(Box::new(ListNode::new(0)));
+
+        loop {
+            if let Some(n) = group_last {
+                if n.next.is_none() {
+                    break;
+                } else {
+                    next_item = n.next.take();
+                    group_last = &mut next_item;
+                }
+            } else {
+                break;
+            }
+        }
+
+        if let Some(n) = group_last { 
+            n.next = Self::reverse_inner(next_start, k);
+        }
+
+        return head;
+
     }
 }
 
