@@ -19,8 +19,8 @@ mod q02190;
 fn main() {
     println!("rust leetcode 刷题指南");
 
-    // run_demo();
-    run_this();
+    run_demo();
+    // run_this();
 }
 
 // 为了编译不报错
