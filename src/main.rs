@@ -15,6 +15,7 @@ mod q00902;
 mod q01217;
 mod q01424;
 mod q02190;
+mod q00232;
 
 fn main() {
     println!("rust leetcode 刷题指南");
@@ -35,6 +36,7 @@ fn run_demo() {
     q01217::demo();
     q01424::demo();
     q02190::demo();
+    q00232::demo();
 }
 
 // 为了在完成某个题目时，不用编译其他题目
