@@ -8,14 +8,16 @@
 mod q00004;
 mod q00010;
 mod q00023;
+mod q00054;
+mod q00232;
 mod q00241;
+mod q00289;
 mod q00417;
 mod q00648;
 mod q00902;
 mod q01217;
 mod q01424;
 mod q02190;
-mod q00232;
 
 fn main() {
     println!("rust leetcode 刷题指南");
@@ -29,14 +31,16 @@ fn run_demo() {
     q00004::demo();
     q00010::demo();
     q00023::demo();
+    q00054::demo();
+    q00232::demo();
     q00241::demo();
+    q00289::demo();
     q00417::demo();
     q00648::demo();
     q00902::demo();
     q01217::demo();
     q01424::demo();
     q02190::demo();
-    q00232::demo();
 }
 
 // 为了在完成某个题目时，不用编译其他题目
