@@ -7,6 +7,7 @@
  */
 mod q00004;
 mod q00010;
+mod q00020;
 mod q00023;
 mod q00048;
 mod q00054;
@@ -32,6 +33,7 @@ fn main() {
 fn run_demo() {
     q00004::demo();
     q00010::demo();
+    q00020::demo();
     q00023::demo();
     q00048::demo();
     q00054::demo();
