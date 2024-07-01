@@ -4,7 +4,6 @@
  */
 use std::collections::VecDeque;
 impl MyQueue {
-
     pub(super) fn new() -> Self {
         MyQueue {
             front: VecDeque::new(),

@@ -3,6 +3,7 @@
  * 通过一个变量，保存第一行或第一列是否本身包含 0
  */
 
+#[allow(unused)]
 fn pp(items: &Vec<Vec<i32>>) {
     println!("[");
     for y in 0..items.len() {

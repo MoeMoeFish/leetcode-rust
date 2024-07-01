@@ -66,8 +66,8 @@ mod test {
     use super::{solution1, solution2, convert_list_node_to_vec, convert_vec_to_linked_list_list};
 
     fn inner_test(input: Vec<Vec<i32>>, ans: Vec<i32>) {
-        // let ret1 = convert_list_node_to_vec(solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
-        // assert_eq!(ans, ret1);
+        let ret1 = convert_list_node_to_vec(solution1::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
+        assert_eq!(ans, ret1);
 
         let ret2 = convert_list_node_to_vec(solution2::Solution::merge_k_lists(convert_vec_to_linked_list_list(input.clone())));
         assert_eq!(ans, ret2);
