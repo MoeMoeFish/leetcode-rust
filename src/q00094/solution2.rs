@@ -1,6 +1,7 @@
 use crate::utils::tree_node::TreeNode;
 
-use std::borrow::Borrow;
+use std::borrow::{Borrow, BorrowMut};
+use std::intrinsics::rintf32;
 use std::rc::Rc;
 use std::cell::RefCell;
 
@@ -10,40 +11,48 @@ use std::cell::RefCell;
  */
 impl Solution {
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
-        let mut ret = vec![];
+        let mut ret: Vec<i32> = Vec::new();
 
-        if root.is_none() {
-            return ret;
-        }
-        let mut curr = root.unwrap();
+        let mut curr = root;
+        let mut pre: Option<Rc<RefCell<TreeNode>>> = Option::None;
 
-        loop {
-            let left = curr.as_ref().borrow().left.clone();
+        while curr.is_some() {
+            if let Some(node) = curr.clone() {
+                let ref_node = node.as_ref().borrow();
 
-            if left.is_none() {
-                ret.push(curr.as_ref().borrow().val);
+                if ref_node.left.is_none() {
+                    ret.push(ref_node.val);
+                    if let Some(r_node) = ref_node.right.as_ref() {
+                        curr = Some(r_node.clone());
+                    } else {
+                        curr = None;
+                    }
+                    continue;
+                } else {
+                    if let Some(left) = ref_node.left.as_ref() {
+                        let mut pre_ref = Some(left.clone());
 
-                let right = curr.as_ref().borrow().right.clone();
+                        loop {
+                            if let Some(pre_node) = pre_ref.clone() {
+                                let pre_right = pre_node.as_ref().borrow().right;
 
-                if right.is_none() {
-                    break;
-                }
+                                if pre_right.is_none() || pre_right == curr {
+                                    break;
+                                }
 
-                if let Some(v) = right {
-                    curr = v;
+                                pre_ref = pre_node.as_ref().borrow().right.clone();
+                            } else {
+                                break;
+                            }
+                        }
+                    }
                 }
             }
-
-            let mut pre = curr.as_ref().borrow().left.clone();
-
-            while let Some(v) = pre {
-                pre = v.as_ref().borrow().right.clone();
-            }
-
-            
         }
 
-        return ret;
+
+
+        ret
     }
 }
 
