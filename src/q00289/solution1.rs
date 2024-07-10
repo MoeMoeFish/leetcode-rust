@@ -45,7 +45,6 @@ impl Solution {
                 let mut live_num = 0;
                 nbs.iter().for_each(|x| if *x == 1 || *x == 3 { live_num += 1});
 
-                println!("i: {i}, j: {j}, liveNum: {live_num}");
                 if board[i][j] == 0 {
                     if live_num == 3 {
                         board[i][j] = 2;

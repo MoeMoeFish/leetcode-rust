@@ -1,7 +1,6 @@
 use crate::utils::tree_node::TreeNode;
 
 use std::borrow::{Borrow, BorrowMut};
-use std::intrinsics::rintf32;
 use std::rc::Rc;
 use std::cell::RefCell;
 
@@ -34,9 +33,8 @@ impl Solution {
 
                         loop {
                             if let Some(pre_node) = pre_ref.clone() {
-                                let pre_right = pre_node.as_ref().borrow().right;
 
-                                if pre_right.is_none() || pre_right == curr {
+                                if pre_node.as_ref().borrow().right.is_none() || pre_node.as_ref().borrow().right == curr {
                                     break;
                                 }
 
