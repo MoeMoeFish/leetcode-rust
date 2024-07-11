@@ -1,4 +1,5 @@
 mod solution1;
+mod solution1r;
 
 pub(crate) fn demo() {
     solution1::Solution::rotate(&mut vec![vec![0]]);
@@ -12,6 +13,10 @@ mod test {
         let mut i1 = input.clone();
         solution1::Solution::rotate(&mut i1);
         assert_eq!(i1, expected);
+
+        let mut i2 = input.clone();
+        solution1r::Solution::rotate(&mut i2);
+        assert_eq!(i2, expected);
     }
 
     #[test]
