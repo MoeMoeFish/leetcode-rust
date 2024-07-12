@@ -3,6 +3,7 @@ mod solution1r;
 
 pub(crate) fn demo() {
     solution1::Solution::rotate(&mut vec![vec![0]]);
+    solution1r::Solution::rotate(&mut vec![vec![0]]);
 }
 
 #[cfg(test)]
