@@ -18,6 +18,7 @@ mod q00094;
 mod q00232;
 mod q00241;
 mod q00289;
+mod q00316;
 mod q00417;
 mod q00648;
 mod q00902;
@@ -45,6 +46,7 @@ fn run_demo() {
     q00232::demo();
     q00241::demo();
     q00289::demo();
+    q00316::demo();
     q00417::demo();
     q00648::demo();
     q00902::demo();
