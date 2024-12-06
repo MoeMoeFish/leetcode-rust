@@ -1,6 +1,6 @@
 impl Solution {
     pub fn remove_duplicate_letters(s: String) -> String {
-
+        panic!("not implement")
     }
 }
 

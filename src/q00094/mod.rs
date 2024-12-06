@@ -5,6 +5,7 @@ use crate::utils::tree_node::TreeNode;
 
 mod solution1;
 mod solution2;
+mod solution2r;
 
 pub (crate) fn demo() {
     let input : Vec<Option<i32>>= vec![Some(1), None, Some(2), Some(3)];
@@ -26,6 +27,15 @@ pub (crate) fn demo() {
         };
 
         solution2::Solution::inorder_traversal(root);
+    }
+    {
+        let tree_node = TreeNode::from_binary_tree_array(input.clone());
+        let root = match tree_node {
+            None => None,
+            Some(v) => Some(Rc::new(RefCell::new(v))),
+        };
+
+        solution2r::Solution::inorder_traversal(root);
     }
 }
 
@@ -53,8 +63,12 @@ mod test {
         inner_test(input, expected);
     }
 
+    #[test]
     fn test2() {
-        let input = "";
+        let input = "1,null,2,3";
+        let expected = vec![1,3,2];
+
+        inner_test(input, expected);
     }
 
     #[test]
