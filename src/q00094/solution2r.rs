@@ -1,6 +1,6 @@
 use crate::utils::tree_node::TreeNode;
+use std::borrow::Borrow;
 use std::cell::RefCell;
-use std::ops::Deref;
 use std::rc::Rc;
 
 impl Solution {
@@ -14,21 +14,21 @@ impl Solution {
                 break;
             }
 
-            let a = curr.clone().unwrap();
+            if let Some(ref rc) = curr.clone() {
+                let node  = rc.as_ref().borrow();
 
-            if a.borrow().left.is_none() {
-                ret.push(a.borrow().val);
+                if node.left.is_none() {
+                    ret.push(node.val);
 
-                if a.borrow().right.is_none() {
-                    break;
+                    if node.right.is_none() {
+                        break;
+                    }
+
+                    curr = rc.as_ref().borrow().right.clone();
                 }
-
-                curr = a.borrow().right.clone();
-                continue;
+                
             }
         }
-
-
         return ret;
     }
 }
