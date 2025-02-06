@@ -8,6 +8,7 @@
 mod utils;
 
 mod q00001;
+mod q00002;
 mod q00004;
 mod q00010;
 mod q00020;
@@ -37,6 +38,7 @@ fn main() {
 // 为了编译不报错
 fn run_demo() {
     q00001::demo();
+    q00002::demo();
     q00004::demo();
     q00010::demo();
     q00020::demo();

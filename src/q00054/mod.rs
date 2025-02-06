@@ -1,6 +1,7 @@
 mod solution1;
 mod solution2;
 mod solution2r;
+mod solution2rr;
 
 pub(crate) fn demo() {
     let v = vec![
@@ -10,18 +11,22 @@ pub(crate) fn demo() {
     ];
     solution1::Solution::spiral_order(v.clone());
     solution2::Solution::spiral_order(v.clone());
+    solution2r::Solution::spiral_order(v.clone());
+    solution2rr::Solution::spiral_order(v.clone());
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::solution1;
     use super::solution2;
     use super::solution2r;
+    use super::solution2rr;
 
     fn inner_test(input: Vec<Vec<i32>>, expected: Vec<i32>) {
         assert_eq!(solution1::Solution::spiral_order(input.clone()), expected);
         assert_eq!(solution2::Solution::spiral_order(input.clone()), expected);
         assert_eq!(solution2r::Solution::spiral_order(input.clone()), expected);
+        assert_eq!(solution2rr::Solution::spiral_order(input.clone()), expected);
     }
 
     #[test]
