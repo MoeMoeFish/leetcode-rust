@@ -1,13 +1,15 @@
 mod solution1;
 mod solution1r;
+mod solution2;
 
 pub(crate) fn demo() {
     solution1::Solution::rotate(&mut vec![vec![0]]);
     solution1r::Solution::rotate(&mut vec![vec![0]]);
+    solution2::Solution::rotate(&mut vec![vec![0]]);
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     use super::*;
 
     fn inner_test(input: Vec<Vec<i32>>, expected: Vec<Vec<i32>>) {
@@ -18,6 +20,10 @@ mod test {
         let mut i2 = input.clone();
         solution1r::Solution::rotate(&mut i2);
         assert_eq!(i2, expected);
+
+        let mut i3 = input.clone();
+        solution2::Solution::rotate(&mut i3);
+        assert_eq!(i3, expected);
     }
 
     #[test]

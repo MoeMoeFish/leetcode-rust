@@ -1,6 +1,5 @@
 use crate::utils::tree_node::TreeNode;
 
-use std::borrow::{Borrow, BorrowMut};
 use std::rc::Rc;
 use std::cell::RefCell;
 
@@ -13,7 +12,6 @@ impl Solution {
         let mut ret: Vec<i32> = Vec::new();
 
         let mut curr = root;
-        let mut pre: Option<Rc<RefCell<TreeNode>>> = Option::None;
 
         while curr.is_some() {
             if let Some(node) = curr.clone() {
