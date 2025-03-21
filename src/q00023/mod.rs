@@ -35,6 +35,7 @@ fn convert_vec_to_linked_list_list(val: Vec<Vec<i32>>) -> Vec<Option<Box<ListNod
     lists
 }
 
+#[allow(dead_code)]
 fn convert_list_node_to_vec(node: Option<Box<ListNode>>) -> Vec<i32> {
     let mut node_ref = &node;
 

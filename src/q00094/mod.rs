@@ -47,12 +47,17 @@ mod test {
     use crate::utils::tree_node::TreeNode;
     use crate::utils::string_utils::string_to_option_int_vec;
     use super::solution1;
+    use super::solution2r;
 
     fn inner_test(input: &str, expected: Vec<i32>) {
         let input_vec = string_to_option_int_vec(input);
 
         let tree_node_1 = TreeNode::from_leetcode_array(input_vec.clone());
         assert_eq!(expected, solution1::Solution::inorder_traversal(tree_node_1));
+
+
+        let tree_node_2 = TreeNode::from_leetcode_array(input_vec.clone());
+        assert_eq!(expected, solution2r::Solution::inorder_traversal(tree_node_2));
     }
 
     #[test]

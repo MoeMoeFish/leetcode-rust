@@ -11,6 +11,7 @@ pub(crate) struct TreeNode {
 }
 
 impl TreeNode {
+    #[allow(dead_code)]
     pub(crate) fn new(val: i32) -> TreeNode {
         TreeNode {
             val,
@@ -18,6 +19,8 @@ impl TreeNode {
             right: None,
         }
     }
+
+    #[allow(dead_code)]
     pub(crate) fn from_leetcode_array(arr: Vec<Option<i32>>) -> Option<Rc<RefCell<TreeNode>>> {
         if arr.len() == 0 {
             return None;

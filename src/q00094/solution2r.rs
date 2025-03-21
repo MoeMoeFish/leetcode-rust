@@ -1,9 +1,7 @@
 use std::cell::RefCell;
-use std::ops::Deref;
 use std::rc::Rc;
 
 use crate::utils::tree_node::TreeNode;
-
 
 impl Solution {
     pub fn inorder_traversal(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
@@ -29,17 +27,45 @@ impl Solution {
                         continue;
                     }
                 } else {
-                    let mut pre = curr_node.clone().as_ref().borrow().left; 
+                    let left_node = inner_node.left.clone();
+                    let mut pre = left_node.clone();
 
                     loop {
-                        if let Some(pre_node) = pre.clone() {
-                            
+                        if let Some(ref pre_node) = pre.clone() {
+                            let right = pre_node.as_ref().borrow().right.clone();
+                            if right.is_some() && right != curr {
+                                pre = right;
+                            } else {
+                                break;
+                            }
+                        } else {
+                            unreachable!();
                         }
                     }
 
+                    if let Some(ref pre_node) = pre.clone() {
+                        let right = pre_node.as_ref().borrow().right.clone();
+
+                        if right.is_none() {
+                            pre_node.as_ref().borrow_mut().right = curr.clone();
+                            curr = left_node;
+                        } else if right == curr {
+                            result.push(inner_node.val);
+                            pre_node.as_ref().borrow_mut().right = None;
+
+                            if inner_node.right.is_some() {
+                                curr = inner_node.right.clone();
+                            } else {
+                                break;
+                            }
+                        }
+
+                    } else {
+                        unreachable!();
+                    }
                 }
             } else {
-                break;
+                unreachable!();
             }
         }
 

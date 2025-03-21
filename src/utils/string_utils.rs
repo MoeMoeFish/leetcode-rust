@@ -2,6 +2,7 @@
 /*
  * convert a string similar "1, null, 2, 3" to a Vec<Option<i32>>
  */
+#[allow(dead_code)]
 pub(crate) fn string_to_option_int_vec(text: &str) -> Vec<Option<i32>> {
     if text.is_empty() {
         return vec![];

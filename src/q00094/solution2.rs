@@ -31,8 +31,13 @@ impl Solution {
 
                         loop {
                             if let Some(pre_node) = pre_ref.clone() {
+                                if pre_node.as_ref().borrow().right == curr {
+                                    break;
+                                }
 
-                                if pre_node.as_ref().borrow().right.is_none() || pre_node.as_ref().borrow().right == curr {
+                                if pre_node.as_ref().borrow().right.is_none() {
+                                    pre_node.as_ref().borrow_mut().right = curr;
+                                    curr = ref_node.left.clone();
                                     break;
                                 }
 
@@ -45,8 +50,6 @@ impl Solution {
                 }
             }
         }
-
-
 
         ret
     }
